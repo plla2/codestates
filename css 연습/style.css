@@ -1,3 +1,4 @@
+/* 돌아가는 궤도 만들기 */
 @keyframes spin {
   0% {
     transform: rotate(0);
