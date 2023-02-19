@@ -93,7 +93,7 @@ body {
 .pl__ball-texture:before {
   animation-name: ballTexture;
   animation-duration: 0.25s;
-  background: url("./images/snow.jpg") 0 0 / 50% 100%;
+  background: url("../images/snow.jpg") 0 0 / 50% 100%;
   content: "";
   display: block;
   filter: brightness(1.05);
