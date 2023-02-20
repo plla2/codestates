@@ -1,0 +1,99 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #e2e2e2;
+}
+.heart {
+  position: relative;
+  height: 70px;
+  width: 70px;
+  background-color: #fff;
+  transform: rotate(-45deg);
+  border-bottom-left-radius: 100px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+}
+.heart::before {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: #fff;
+  border-radius: 50px;
+  top: -50%;
+  left: 0;
+}
+.heart::after {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: #fff;
+  border-radius: 50px;
+  top: 0;
+  right: -50%;
+}
+.heart,
+.heart::before,
+.heart::after {
+  transition: all 0.6s linear;
+  transition-delay: 0.3s;
+}
+.heart.forward,
+.heart.forward::before,
+.heart.forward::after {
+  background-color: #eb608c;
+}
+.circle {
+  position: absolute;
+  background-color: rgb(233, 137, 120);
+  height: 55px;
+  width: 55px;
+  z-index: 100;
+  left: 7px;
+  top: -28px;
+  border-radius: 50%;
+  transition: 0.6s;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+}
+.heart.forward .circle {
+  animation: move 0.6s forwards;
+}
+@keyframes move {
+  0% {
+    left: 7px;
+    top: -28px;
+  }
+  50% {
+    top: -1px;
+    left: 17px;
+  }
+  100% {
+    left: 42px;
+    top: 7px;
+  }
+}
+.heart.reverse .circle {
+  animation: back 0.6s forwards;
+}
+@keyframes back {
+  0% {
+    left: 42px;
+    top: 7px;
+  }
+  50% {
+    left: 17px;
+    top: 1px;
+  }
+  100% {
+    left: 7px;
+    top: -28px;
+  }
+}
