@@ -13,7 +13,7 @@ body {
   pointer-events: none;
 }
 .carousel-item {
-  --item: 10;
+  --items: 10;
   --width: clamp(150px, 30vw, 300px);
   --height: clamp(200px, 40vw, 400px);
   --x: calc(var(--active) * 800%);
@@ -23,9 +23,10 @@ body {
   overflow: hidden;
   position: absolute;
   z-index: var(--zIndex);
-  width: var(--width);
-  height: var(--height);
-  margin: calc(var(--height) * -0.5) 0 0 calc(var(--width) * -0.5);
+  width: clamp(150px, 30vw, 300px);
+  height: clamp(200px, 40vw, 400px);
+  margin: calc(clamp(200px, 40vw, 400px) * -0.5) 0 0
+    calc(clamp(150px, 30vw, 300px) * -0.5);
   border-radius: 10px;
   top: 50%;
   left: 50%;
@@ -34,7 +35,11 @@ body {
   box-shadow: 0 10px 50px 10px rgba(0, 0, 0, 0.5);
   background: black;
   pointer-events: all;
-  transform: translate(var(--x), var(--y), rotate(var(--rot)));
+  transform: translate(
+    calc(var(--active) * 800%),
+    calc(var(--active) * 200%),
+    calc(var(--active) * 120deg)
+  );
   transition: transform 0.8s cubic-bezier(0, 0.02, 0, 1);
 }
 .carousel-item .carousel-box {
@@ -48,7 +53,7 @@ body {
   opacity: var(--opacity);
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
-.carousel-item .carousel-box::before {
+.carousel-item .carousel-box:before {
   content: "";
   position: absolute;
   z-index: 1;
@@ -127,7 +132,7 @@ body {
   position: absolute;
   z-index: 10;
   bottom: 20px;
-  right: 20px;
+  right: 25px;
   color: #fff;
   opacity: 0.4;
 }
@@ -161,6 +166,6 @@ body {
   }
 }
 .cursor2 {
-  --size: 2px;
+  /* --size: 2px; */
   transition-duration: 0.7s;
 }
