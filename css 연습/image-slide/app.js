@@ -12,10 +12,10 @@ function switchLayer(step = 1) {
   for (let i of layers) {
     i.classList.remove("layer-displayed");
     i.classList.remove("layer-displayed-exit");
-    if (i.dataset.scene == nextSlide) {
+    if (i.dataset.scene === String(nextSlide)) {
       i.classList.add("layer-displayed");
     }
-    if (i.dataset.scene == sliderIndex) {
+    if (i.dataset.scene === String(sliderIndex)) {
       i.classList.add("layer-displayed-exit");
     }
   }
