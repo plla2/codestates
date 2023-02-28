@@ -65,3 +65,95 @@ function clearVar(symbol = "") {
   // 임시 결과창에 저장한 값 출력
   tempResultE1.innerText = result;
 }
+function mathOperation() {
+  if (lastOperation === "×") {
+    result = parseFloat(result) * parseFloat(display2Num);
+  } else if (lastOperation === "+") {
+    result = parseFloat(result) + parseFloat(display2Num);
+  } else if (lastOperation === "−") {
+    result = parseFloat(result) - parseFloat(display2Num);
+  } else if (lastOperation === "÷") {
+    result = parseFloat(result) / parseFloat(display2Num);
+  } else if (lastOperation === "%") {
+    result = parseFloat(result) % parseFloat(display2Num);
+  }
+}
+
+equalE1.addEventListener("click", (e) => {
+  // 첫번째 값 혹은 두번째 값이 없을 경우는 계산 불가하여 아무것도 하지 않음
+  if (!display1Num || !display2Num) {
+    return;
+  }
+  //둘 다 값이 있을 경우
+  haveDot = false;
+  mathOperation();
+  clearVar();
+  display2El.innerText = result;
+  tempResultEl.innerText = "";
+  display2Num = result;
+  display1Num = "";
+});
+
+// all clear(AC) click Event
+clearAllEl.addEventListener("click", (e) => {
+  // 모든 값 초기화
+  display1El.innerText = "0";
+  display2El.innerText = "0";
+  display1Num = "";
+  display2Num = "";
+  result = "";
+  tempResultEl.innerText = "0";
+  haveDot = false;
+});
+
+// ------------------------------------ window keydown Event ------------------------------------
+window.addEventListener("keydown", (e) => {
+  // 누른 키의 값을 받아와 각 종류 별 매칭되는 클릭과 연결
+  if (
+    e.key === "0" ||
+    e.key === "1" ||
+    e.key === "2" ||
+    e.key === "3" ||
+    e.key === "4" ||
+    e.key === "5" ||
+    e.key === "6" ||
+    e.key === "7" ||
+    e.key === "8" ||
+    e.key === "9" ||
+    e.key === "."
+  ) {
+    clickButtonEl(e.key);
+  } else if (e.key === "+" || e.key === "/" || e.key === "%") {
+    clickOperation(e.key);
+  } else if (e.key === "*") {
+    clickOperation("×");
+  } else if (e.key === "-") {
+    clickOperation("−");
+  } else if (e.key === "?") {
+    clickOperation("÷");
+  } else if (e.key === "Enter" || e.key === "=") {
+    ClickEqual();
+  }
+});
+
+// 숫자 클릭
+function clickButtonEl(key) {
+  numbersEl.forEach((button) => {
+    if (button.innerText === key) {
+      button.click();
+    }
+  });
+}
+
+// 기호 클릭
+function clickOperation(key) {
+  operationEl.forEach((button) => {
+    if (button.innerText === key) {
+      button.click();
+    }
+  });
+}
+
+function ClickEqual() {
+  equalEl.click();
+}
