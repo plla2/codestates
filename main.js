@@ -1,14 +1,3 @@
-let circle = {
-  radius: 5,
-  getDiameter: function () {
-    return 2 * this.radius;
-  },
-};
-console.log(circle.radius);
-circle.radius = 4;
-console.log(circle.radius);
-console.log(circle.getDiameter());
-
 // 객체, 배열 문제
 // 문제 1
 // const arr=[1,2,3,4,5];
@@ -43,3 +32,28 @@ console.log(circle.getDiameter());
 // console.log(person['name']);
 // console.log(person.name);
 // console.log(person[name]);   <-- 답
+
+// 3월2일 문제
+// 문제1
+// let foo;
+// console.log(typeof foo);
+
+// foo = null;
+// console.log(typeof foo);
+
+// foo = [];
+// console.log(typeof foo);
+
+// 해답1
+// undefined, object, object
+
+// 문제2
+// score = 80;
+// var score; // let score;
+
+// console.log(score)
+
+// score가 80이 찍히는것은?
+
+// 해답2
+// var
