@@ -1,37 +1,37 @@
-describe('scope 대해서 학습합니다.', function () {
+describe("scope 대해서 학습합니다.", function () {
   //  scope는 변수의 값(변수에 담긴 값)을 찾을 때 확인하는 곳을 말합니다. 반드시 기억하시기 바랍니다.
-  it('함수 선언식(declaration)과 함수 표현식(expression)의 차이를 확인합니다.', function () {
-    let funcExpressed = 'to be a function';
+  it("함수 선언식(declaration)과 함수 표현식(expression)의 차이를 확인합니다.", function () {
+    let funcExpressed = "to be a function";
 
-    expect(typeof funcDeclared).to.equal(FILL_ME_IN);
-    expect(typeof funcExpressed).to.equal(FILL_ME_IN);
+    expect(typeof funcDeclared).to.equal("function");
+    expect(typeof funcExpressed).to.equal("string");
 
     function funcDeclared() {
-      return 'this is a function declaration';
+      return "this is a function declaration";
     }
 
     funcExpressed = function () {
-      return 'this is a function expression';
+      return "this is a function expression";
     };
 
     // 자바스크립트 함수 호이스팅(hoisting)에 대해서 검색해 봅니다.
 
     const funcContainer = { func: funcExpressed };
-    expect(funcContainer.func()).to.equal(FILL_ME_IN);
+    expect(funcContainer.func()).to.equal(funcExpressed());
 
     funcContainer.func = funcDeclared;
-    expect(funcContainer.func()).to.equal(FILL_ME_IN);
+    expect(funcContainer.func()).to.equal(funcDeclared());
   });
 
-  it('lexical scope에 대해서 확인합니다.', function () {
-    let message = 'Outer';
+  it("lexical scope에 대해서 확인합니다.", function () {
+    let message = "Outer";
 
     function getMessage() {
       return message;
     }
 
     function shadowGlobal() {
-      let message = 'Inner';
+      let message = "Inner";
       return message;
     }
 
@@ -40,36 +40,38 @@ describe('scope 대해서 학습합니다.', function () {
     }
 
     function shadowParameter(message) {
-      message = 'Do not use parameters like this!';
+      message = "Do not use parameters like this!";
       return message;
     }
 
-    expect(getMessage()).to.equal(FILL_ME_IN);
-    expect(shadowGlobal()).to.equal(FILL_ME_IN);
-    expect(shadowGlobal2('Parameter')).to.equal(FILL_ME_IN);
-    expect(shadowParameter('Parameter')).to.equal(FILL_ME_IN);
-    expect(message).to.equal(FILL_ME_IN);
+    expect(getMessage()).to.equal("Outer");
+    expect(shadowGlobal()).to.equal("Inner");
+    expect(shadowGlobal2("Parameter")).to.equal("Parameter");
+    expect(shadowParameter("Parameter")).to.equal(
+      "Do not use parameters like this!"
+    );
+    expect(message).to.equal("Outer");
   });
 
-  it('default parameter에 대해 확인합니다.', function () {
+  it("default parameter에 대해 확인합니다.", function () {
     function defaultParameter(num = 5) {
       return num;
     }
 
-    expect(defaultParameter()).to.equal(FILL_ME_IN);
-    expect(defaultParameter(10)).to.equal(FILL_ME_IN);
+    expect(defaultParameter()).to.equal(5);
+    expect(defaultParameter(10)).to.equal(10);
 
     function pushNum(num, arr = []) {
       arr.push(num);
       return arr;
     }
 
-    expect(pushNum(10)).to.deep.equal(FILL_ME_IN);
-    expect(pushNum(20)).to.deep.equal(FILL_ME_IN);
-    expect(pushNum(4, [1, 2, 3])).to.deep.equal(FILL_ME_IN);
+    expect(pushNum(10)).to.deep.equal([10]);
+    expect(pushNum(20)).to.deep.equal([20]);
+    expect(pushNum(4, [1, 2, 3])).to.deep.equal([1, 2, 3, 4]);
   });
 
-  it('클로저(closure)에 대해 확인합니다.', function () {
+  it("클로저(closure)에 대해 확인합니다.", function () {
     function increaseBy(increaseByAmount) {
       return function (numberToIncrease) {
         return numberToIncrease + increaseByAmount;
@@ -79,9 +81,9 @@ describe('scope 대해서 학습합니다.', function () {
     const increaseBy3 = increaseBy(3);
     const increaseBy5 = increaseBy(5);
 
-    expect(increaseBy3(10)).to.equal(FILL_ME_IN);
-    expect(increaseBy5(10)).to.equal(FILL_ME_IN);
-    expect(increaseBy(8)(6) + increaseBy(5)(9)).to.equal(FILL_ME_IN);
+    expect(increaseBy3(10)).to.equal(13);
+    expect(increaseBy5(10)).to.equal(15);
+    expect(increaseBy(8)(6) + increaseBy(5)(9)).to.equal(28);
 
     /*
     mdn에 따르면 클로저의 정의는 다음과 같습니다. 반드시 기억하시기 바랍니다.
@@ -103,34 +105,34 @@ describe('scope 대해서 학습합니다.', function () {
     */
   });
 
-  it('lexical scope와 closure에 대해 다시 확인합니다.', function () {
+  it("lexical scope와 closure에 대해 다시 확인합니다.", function () {
     let age = 27;
-    let name = 'jin';
+    let name = "jin";
     let height = 179;
 
     function outerFn() {
       let age = 24;
-      name = 'jimin';
+      name = "jimin";
       let height = 178;
 
       function innerFn() {
         age = 26;
-        let name = 'suga';
+        let name = "suga";
         return height;
       }
 
       innerFn();
 
-      expect(age).to.equal(FILL_ME_IN);
-      expect(name).to.equal(FILL_ME_IN);
+      expect(age).to.equal(26);
+      expect(name).to.equal("jimin");
 
       return innerFn;
     }
 
     const innerFn = outerFn();
 
-    expect(age).to.equal(FILL_ME_IN);
-    expect(name).to.equal(FILL_ME_IN);
-    expect(innerFn()).to.equal(FILL_ME_IN);
+    expect(age).to.equal(27);
+    expect(name).to.equal("jimin");
+    expect(innerFn()).to.equal(178);
   });
 });
