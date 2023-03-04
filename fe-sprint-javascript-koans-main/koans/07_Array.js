@@ -1,21 +1,21 @@
-describe('Array에 대해서 학습합니다.', function () {
-  it('Array의 기본을 확인합니다.', function () {
+describe("Array에 대해서 학습합니다.", function () {
+  it("Array의 기본을 확인합니다.", function () {
     const emptyArr = [];
-    expect(typeof emptyArr === 'array').to.equal(FILL_ME_IN);
-    expect(emptyArr.length).to.equal(FILL_ME_IN);
+    expect(typeof emptyArr === "array").to.equal(false);
+    expect(emptyArr.length).to.equal(0);
 
     const multiTypeArr = [
       0,
       1,
-      'two',
+      "two",
       function () {
         return 3;
       },
       { value1: 4, value2: 5 },
       [6, 7],
     ];
-    expect(multiTypeArr.length).to.equal(FILL_ME_IN);
-    expect(multiTypeArr[0]).to.equal(FILL_ME_IN);
+    expect(multiTypeArr.length).to.equal(5);
+    expect(multiTypeArr[0]).to.equal();
     expect(multiTypeArr[2]).to.equal(FILL_ME_IN);
     expect(multiTypeArr[3]()).to.equal(FILL_ME_IN);
     expect(multiTypeArr[4].value1).to.equal(FILL_ME_IN);
@@ -23,7 +23,7 @@ describe('Array에 대해서 학습합니다.', function () {
     expect(multiTypeArr[FILL_ME_IN][FILL_ME_IN]).to.equal(7);
   });
 
-  it('Array의 요소(element)를 다루는 방법을 확인합니다.', function () {
+  it("Array의 요소(element)를 다루는 방법을 확인합니다.", function () {
     const arr = [];
     expect(arr).to.deep.equal([]);
 
@@ -41,8 +41,8 @@ describe('Array에 대해서 학습합니다.', function () {
     expect(arr).to.deep.equal(FILL_ME_IN);
   });
 
-  it('Array 메소드 slice를 확인합니다.', function () {
-    const arr = ['peanut', 'butter', 'and', 'jelly'];
+  it("Array 메소드 slice를 확인합니다.", function () {
+    const arr = ["peanut", "butter", "and", "jelly"];
 
     expect(arr.slice(1)).to.deep.equal(FILL_ME_IN);
     expect(arr.slice(0, 1)).to.deep.equal(FILL_ME_IN);
@@ -58,26 +58,26 @@ describe('Array에 대해서 학습합니다.', function () {
     expect(arr.slice(0)).to.deep.equal(FILL_ME_IN);
   });
 
-  it('Array를 함수의 전달인자로 전달할 경우, reference가 전달됩니다.', function () {
+  it("Array를 함수의 전달인자로 전달할 경우, reference가 전달됩니다.", function () {
     // call(pass) by value와 call(pass) by reference의 차이에 대해서 학습합니다.
-    const arr = ['zero', 'one', 'two', 'three', 'four', 'five'];
+    const arr = ["zero", "one", "two", "three", "four", "five"];
 
     function passedByReference(refArr) {
-      refArr[1] = 'changed in function';
+      refArr[1] = "changed in function";
     }
     passedByReference(arr);
     expect(arr[1]).to.equal(FILL_ME_IN);
 
     const assignedArr = arr;
-    assignedArr[5] = 'changed in assignedArr';
+    assignedArr[5] = "changed in assignedArr";
     expect(arr[5]).to.equal(FILL_ME_IN);
 
     const copiedArr = arr.slice();
-    copiedArr[3] = 'changed in copiedArr';
+    copiedArr[3] = "changed in copiedArr";
     expect(arr[3]).to.equal(FILL_ME_IN);
   });
 
-  it('Array 메소드 shift와 unshift를 확인합니다.', function () {
+  it("Array 메소드 shift와 unshift를 확인합니다.", function () {
     const arr = [1, 2];
 
     arr.unshift(3);
