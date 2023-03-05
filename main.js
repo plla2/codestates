@@ -49,7 +49,7 @@
 
 // 문제2
 // score = 80;
-// var score; // let score;
+// var score;    vs    let score;
 
 // console.log(score)
 
