@@ -14,13 +14,13 @@ describe("Array에 대해서 학습합니다.", function () {
       { value1: 4, value2: 5 },
       [6, 7],
     ];
-    expect(multiTypeArr.length).to.equal(5);
-    expect(multiTypeArr[0]).to.equal();
-    expect(multiTypeArr[2]).to.equal(FILL_ME_IN);
-    expect(multiTypeArr[3]()).to.equal(FILL_ME_IN);
-    expect(multiTypeArr[4].value1).to.equal(FILL_ME_IN);
-    expect(multiTypeArr[FILL_ME_IN][FILL_ME_IN]).to.equal(5);
-    expect(multiTypeArr[FILL_ME_IN][FILL_ME_IN]).to.equal(7);
+    expect(multiTypeArr.length).to.equal(6);
+    expect(multiTypeArr[0]).to.equal(0);
+    expect(multiTypeArr[2]).to.equal("two");
+    expect(multiTypeArr[3]()).to.equal(3);
+    expect(multiTypeArr[4].value1).to.equal(4);
+    expect(multiTypeArr[true][FILL_ME_IN]).to.equal(5);
+    expect(multiTypeArr[5][2]).to.equal(7);
   });
 
   it("Array의 요소(element)를 다루는 방법을 확인합니다.", function () {
