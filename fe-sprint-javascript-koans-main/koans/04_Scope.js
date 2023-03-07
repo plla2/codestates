@@ -7,6 +7,8 @@ describe("scope 대해서 학습합니다.", function () {
     expect(typeof funcExpressed).to.equal("string");
 
     function funcDeclared() {
+      // 함수 선언문으로 정의된 함수는 호이스팅이 일어난 것처럼 보인다.
+      // 함수 표현식은 호이스팅이 일어나지않는다.
       return "this is a function declaration";
     }
 
@@ -36,6 +38,7 @@ describe("scope 대해서 학습합니다.", function () {
     }
 
     function shadowGlobal2(message) {
+      // 매개변수가 있기 때문에 매개변수 참조
       return message;
     }
 
