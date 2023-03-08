@@ -13,7 +13,10 @@ let elInputpassre = document.querySelector("#password-retype");
 let mismatch = document.querySelector(".mismatch-message");
 
 let mismatch2 = document.querySelector(".failure-message2");
-// elFailureMessage.classList.remove("hide");
+
+let strong = document.querySelector(".strong-pass");
+
+let signBtn = document.querySelector(".signup");
 
 elInputUsername.addEventListener("keyup", () => {
   if (isMoreThan4Length(elInputUsername.value)) {
@@ -28,7 +31,7 @@ elInputUsername.addEventListener("keyup", () => {
     elFailureMessage.classList.remove("hide");
   }
   if (onlyNumberAndEnglish(elInputUsername.value)) {
-    elSuccessMessage.classList.remove("hide");
+    // elSuccessMessage.classList.remove("hide");
     mismatch2.classList.add("hide");
   } else {
     elSuccessMessage.classList.add("hide");
@@ -46,8 +49,22 @@ elInputpass.addEventListener("keyup", (e) => {
   if (!isMatch(password1, password2)) {
     mismatch.classList.remove("hide");
     return;
+  } else if (isMatch(password1, password2)) {
+    mismatch.classList.add("hide");
   }
-  mismatch.classList.add("hide");
+  if (!strongPassword(elInputpass.value)) {
+    strong.classList.remove("hide");
+    return;
+  }
+  strong.classList.add("hide");
+});
+
+elInputpassre.addEventListener("keyup", (e) => {
+  if (!strongPassword(elInputpassre.value)) {
+    strong.classList.remove("hide");
+    return;
+  }
+  strong.classList.add("hide");
 });
 
 elInputpassre.addEventListener("keyup", (e) => {
@@ -77,11 +94,7 @@ function strongPassword(str) {
   );
 }
 
-// 주석을 제거하고, 유효성 검증 함수를 테스트 해보세요
-
-// console.log('`codestates`는 영어만 포함하므로', onlyNumberAndEnglish('codestates'))
-// console.log('`김coding`은 영어 외의 다른 글자도 포함하므로', onlyNumberAndEnglish('김coding'))
-// console.log('`김코딩`은 영어 외의 다른 글자도 포함하므로', onlyNumberAndEnglish('김코딩'))
-// console.log('`qwerty`는 충분히 강력하지 않은 암호이므로', strongPassword('qwerty'))
-// console.log('`q1w2e3r4`는 특수문자를 포함하지 않으므로', strongPassword('q1w2e3r4'))
-// console.log('`q1w2e3r4!`는 조건을 충족하므로', strongPassword('q1w2e3r4!'))
+signBtn.addEventListener("click", (e) => {
+  alert("안녕하세요");
+  window.location.reload();
+});
