@@ -95,6 +95,15 @@ function strongPassword(str) {
 }
 
 signBtn.addEventListener("click", (e) => {
-  alert("안녕하세요");
+  if (
+    isMoreThan4Length(elInputUsername.value) &&
+    onlyNumberAndEnglish(elInputUsername.value) &&
+    strongPassword(elInputpass.value) &&
+    strongPassword(elInputpassre.value)
+  ) {
+    alert("ㅎㅇ");
+  } else {
+    alert("ㅂㅇ");
+  }
   window.location.reload();
 });
