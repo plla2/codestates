@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <ul>
+      <li class="apple">Apple</li>
+      <li class="banana">Banana</li>
+      <li class="orange">Orange</li>
+    </ul>
+    <script>
+      // ul 요소의 자식 요소인 li 요소를 모두 탐색하여 반환.
+      const $elems = document.querySelectorAll("ul > li");
+      // 취득한 요소 노드들은 NodeList 객체에 담겨 반환
+      console.log($elems); // NodeList(3) [li.apple, li.banana, li.orange]
+
+      // 취득한 모든 요소 노드의 style.color 프로퍼티 값을 변경.
+      // NodeList는 forEach 메서드를 제공함
+      $elems.forEach((elem) => {
+        elem.style.color = "red";
+      });
+    </script>
+  </body>
+</html>
