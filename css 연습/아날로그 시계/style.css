@@ -80,13 +80,13 @@ body.dark {
   transform-origin: bottom;
   background: var(--red-color);
 }
-.hand .minute {
+.hand.minute {
   height: 120px;
   width: 5px;
   background: var(--black-color);
 }
-.hand .hour {
-  height: 100px;
+.hand.hour {
+  height: 80px;
   width: 5px;
   background: var(--black-color);
 }
