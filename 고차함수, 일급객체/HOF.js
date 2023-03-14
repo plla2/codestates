@@ -53,15 +53,31 @@
 // const subs = abc(5);
 // subs(10) // 5    *def 자리에 5, num 자리에 10이 들어간다.  따라서 10-5= 5
 
-function double(num) {
-  return num * 2;
+// function double(num) {
+//   return num * 2;
+// }
+// // doubleSub 함수는 고차 함수
+// function doubleSub(subtract, func) {
+//   const doubled = func(subtract);
+//   return function (num) {
+//     return num - doubled;
+//   };
+// }
+// // double 함수는 doubleSub 함수의 콜백으로 전달되었다.
+// doubleSub(5, double)(18); // 8
+
+function add(x, y) {
+  return x + y;
 }
-// doubleSub 함수는 고차 함수
-function doubleSub(subtract, func) {
-  const doubled = func(subtract);
-  return function (num) {
-    return num - doubled;
+
+function add(x) {
+  return function (y) {
+    return x + y;
   };
 }
-// double 함수는 doubleSub 함수의 콜백으로 전달되었다.
-doubleSub(5, double)(18); // 8
+
+const addFive = add(5);
+addFive(3); // 8
+addFive(7); // 12
+console.log(addFive(7));
+console.log(addFive(7));
