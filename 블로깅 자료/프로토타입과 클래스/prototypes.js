@@ -72,12 +72,27 @@
 // // parent의 프로토타입을 child로 설정
 // parent.__proto__ = child;  // TypeError: Cyclic __proto__ value
 
-const obj = {};
-const parent = { x: 1 };
+// const obj = {};
+// const parent = { x: 1 };
 
-// obj 객체의 프로토타입을 취득
-Object.getPrototypeOf(obj); // obj.__proto__;
-// obj 객체의 프로토타입을 교체
-Object.setPrototypeOf(obj, parent);  //obj.__proto__ = parent;
+// // obj 객체의 프로토타입을 취득
+// Object.getPrototypeOf(obj); // obj.__proto__;
+// // obj 객체의 프로토타입을 교체
+// Object.setPrototypeOf(obj, parent);  //obj.__proto__ = parent;
 
-console.log(obj.x);  // 1
+// console.log(obj.x);  // 1
+
+
+function Person(name) {
+  this.name = name;
+}
+
+// 프로토타입 메서드
+Person.prototype.sayHello = function () {
+  console.log(`Hi! My name is ${this.name}`);
+}
+
+const me = new Person('Jeong');
+
+// hasOwnProperty는 Object.prototype의 메서드다.
+console.log(me.hasOwnProperty('name'));  // true

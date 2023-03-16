@@ -1,59 +1,32 @@
-// 객체, 배열 문제
-// 문제 1
-// const arr=[1,2,3,4,5];
-// let result= arr.push(6,7);
-// console.log(result);
-// console.log(arr);
-// 해답 1
-//   7  변경된 length의 값을 반환한다.
-//   [1,2,3,4,5,6,7]  변경된 배열arr을 반환
+// let arr = ['Queen', 'Elizabeth', 'Of Hearts', 'Beyonce'];
+// let output = transformFirstAndLast(arr);
+// console.log(output); // --> { Queen : 'Beyonce' }
 
-// 문제 2
-// const arr=[1,2,3,4,5];
-// let result=arr.pop();
-// console.log(result);
-// console.log(arr);
-// 해답 2
-// 5          맨마지막 요소를 반환
-// [1,2,3,4]  맨마지막 요소를 제거하고 배열반환
+// arr = ['Kevin', 'Bacon', 'Love', 'Hart', 'Costner', 'Spacey'];
+// output = transformFirstAndLast(arr);
+// console.log(output); // --> { Kevin : 'Spacey' }
 
-// 문제3
-// 원본배열 가공/ 새로운 배열 또는 값 생성하여 반환
-// push() , unshift(), splice(),  join(), slice(), concat()
-// 해답3
-//원본배열 push unshift splice        // 새로운 배열 생성 join  slice  concat
+// function transformFirstAndLast(arr) {
+//   let sol = {};
+//   if (arr.length === 0) { return {} }
+//   sol[arr[0]] = arr[arr.length - 1];
+//   return sol;
+// }
 
-// 문제4
-//프로퍼티 접근방법 중 잘못된 것
-// let person = {
-//   name = "Jeong"
-// };
-// 해답4
-// console.log(person['name']);
-// console.log(person.name);
-// console.log(person[name]);   <-- 답
 
-// 3월2일 문제
-// 문제1
-// let foo;
-// console.log(typeof foo);
+// // 함수 객체는 prototype 프로퍼티를 소유한다.
+// (function () {}).hasOwnProperty('prototype');  // true
 
-// foo = null;
-// console.log(typeof foo);
+// // 일반 객체는 prototype 프로퍼티를 소유하지않는다.
+// ({}).hasOwnProperty('prototype');  // false
 
-// foo = [];
-// console.log(typeof foo);
+// 화살표 함수는 non-constructor
+const Person = name => {
+  this.name = name;
+}
 
-// 해답1
-// undefined, object, object
+// non-constructor는 prototype 프로퍼티를 소유하지 않음
+console.log(Person.hasOwnProperty('prototype'));  // false
 
-// 문제2
-// score = 80;
-// var score;    vs    let score;
-
-// console.log(score)
-
-// score가 80이 찍히는것은?
-
-// 해답2
-// var
+// non-constructor는 프로토타입을 생성하지 않음
+console.log(Person.prototype);  // undefined
