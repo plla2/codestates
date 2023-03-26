@@ -1,0 +1,65 @@
+.home-page{
+  background-image: url("../../images/mountain-7690893_1920.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+.home-page__content-wrapper{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 3.5rem;
+}
+.home-page__heading{
+  color: lightgray;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-weight: normal;
+  font-size: 1.6rem;
+  letter-spacing: 3px;
+  margin-bottom: 1.6rem;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.home-page__title{
+  color: white;
+  text-transform: uppercase;
+  font-size: 6rem;
+  font-weight: normal;
+  line-height: 100px;
+  margin-bottom: 1.6rem;
+  text-align: center;
+}
+.home-page__context{
+  color: white;
+  font-size: 1.5rem;
+  line-height: 25px;
+  margin-bottom: 6.5rem;
+  padding: 0 4.5rem;
+  text-align: center;
+}
+
+.home-page__btn{
+  background-color: lightgray;
+  /* opacity: 0; */
+  /* background-color: transparent; */
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  height: 100px;
+  width: 100px;
+}
+
+.home-page__btn:hover{
+  box-shadow: 0px 0px 0px 50px rgba(255,255,255,0.1);
+}
+.home-page__btn-skills{
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1.2rem;
+  letter-spacing: 1.25px;
+  text-transform: uppercase;
+}
