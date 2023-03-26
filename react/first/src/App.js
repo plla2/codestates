@@ -1,24 +1,25 @@
-import logo from './logo.svg';
 import './App.css';
-import React from 'react'
+import { useState } from 'react';
+import Button from './component/button';
+import Text from './component/text';
 
 function App() {
-  let posts = 'plla2의 개발일지'
-  function func() {
-    return 'plla2';
-  }
+
+  const [innerText, setInnerText] = useState("초기상태")
+
   return (
     <div className="App">
-      <div className="black-nav">
-        <div>개발 Blog</div>
-      </div>
-      <div className='list'>
-        <h4>{posts}</h4>
-        <p>3월 22일 발행</p>
-        <hr />
-      </div>
+      <h1>버튼을 누르면 텍스트가 변하는 홈페이지</h1>
+      <Button setInnerText={setInnerText} />
+      <Text innerText={innerText} />
     </div>
+
   );
+
+
 }
 
 export default App;
+
+
+
