@@ -19,15 +19,6 @@ app.get('/database', (req, res) => {
   res.send(database);
 })
 
-app.get('/database/:title', (req, res) => {
-  const title = req.params.title;
-  database.push({
-    id: database.length + 1,
-    title,
-  })
-  res.send("값 추가가 완료되었습니다.");
-})
-
 app.post('/add-database', (req, res) => {
   const title = req.body.title;
   database.push({
