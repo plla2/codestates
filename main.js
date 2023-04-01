@@ -146,23 +146,75 @@
 // console.log(output); // --> ['where', 'the', 'word',]
 
 
-function findBugInApples(arr) {
+// function findBugInApples(arr) {
+//   for (let i = 0; i < arr.length; i++) {
+//     if (arr[i].includes('B')) {
+//       let index = arr[i].indexOf('B');
+//       return [i, index];
+//     }
+//   }
+// }
+
+// let output = findBugInApples([['A'], ['B']]);
+// console.log(output); //[1, 0]
+
+// output = findBugInApples([
+//   ['A', 'A', 'A', 'A', 'A'],
+//   ['A', 'B', 'A', 'A', 'A'],
+//   ['A', 'A', 'A', 'A', 'A'],
+//   ['A', 'A', 'A', 'A', 'A'],
+//   ['A', 'A', 'A', 'A', 'A'],
+// ]);
+// console.log(output); //[1, 1]
+
+// // 고차 함수
+// function each(array, iterator) {
+//   for (let i = 0; i < array.length; i++) {
+//     iterator(array[i], i, array)
+//   }
+// }
+// // 콜백 함수
+// function printIterator(element, index, array) {
+//   console.log(element, index, array)
+// }
+
+// each([1, 2, 3, 4, 5], printIterator)
+
+
+function readVertically(arr) {
+  // TODO: 여기에 코드를 작성합니다.
+  let maxLength = 0;
   for (let i = 0; i < arr.length; i++) {
-    if (arr[i].includes('B')) {
-      let index = arr[i].indexOf('B');
-      return [i, index];
+    if (maxLength < arr[i].length) {
+      maxLength = arr[i].length;
     }
   }
+
+  let result = '';
+  for (let i = 0; i < maxLength; i++) {
+    for (let j = 0; j < arr.length; j++) {
+      if (arr[j][i] === undefined) {
+        continue;
+      }
+      result += arr[j][i];
+    }
+  }
+  return result;
 }
 
-let output = findBugInApples([['A'], ['B']]);
-console.log(output); //[1, 0]
 
-output = findBugInApples([
-  ['A', 'A', 'A', 'A', 'A'],
-  ['A', 'B', 'A', 'A', 'A'],
-  ['A', 'A', 'A', 'A', 'A'],
-  ['A', 'A', 'A', 'A', 'A'],
-  ['A', 'A', 'A', 'A', 'A'],
-]);
-console.log(output); //[1, 1]
+let input = [
+  //
+  'hello',
+  'wolrd',
+];
+let output = readVertically(input);
+console.log(output); // --> 'hweolllrod'
+
+input = [
+  //
+  'hi',
+  'wolrd',
+];
+output = readVertically(input);
+console.log(output); // --> 'hwiolrd'
