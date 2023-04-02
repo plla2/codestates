@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Card } from 'react-bootstrap';
-
+import "../../pages/style.css";
 function ProjectCard(props) {
   return (
     <Card className='project-card-view'>

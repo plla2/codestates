@@ -1,4 +1,5 @@
 // let output1 = letterCapitalize('hello world');
+
 // console.log(output1); // "Hello World"
 // let output2 = letterCapitalize('javascript  is sexy ');
 // console.log(output2); // "Javascript  Is Sexy "
@@ -181,40 +182,63 @@
 // each([1, 2, 3, 4, 5], printIterator)
 
 
-function readVertically(arr) {
-  // TODO: 여기에 코드를 작성합니다.
-  let maxLength = 0;
-  for (let i = 0; i < arr.length; i++) {
-    if (maxLength < arr[i].length) {
-      maxLength = arr[i].length;
-    }
-  }
+// function readVertically(arr) {
+//   // TODO: 여기에 코드를 작성합니다.
+//   let maxLength = 0;
+//   for (let i = 0; i < arr.length; i++) {
+//     if (maxLength < arr[i].length) {
+//       maxLength = arr[i].length;
+//     }
+//   }
 
-  let result = '';
-  for (let i = 0; i < maxLength; i++) {
-    for (let j = 0; j < arr.length; j++) {
-      if (arr[j][i] === undefined) {
-        continue;
-      }
-      result += arr[j][i];
-    }
-  }
-  return result;
+//   let result = '';
+//   for (let i = 0; i < maxLength; i++) {
+//     for (let j = 0; j < arr.length; j++) {
+//       if (arr[j][i] === undefined) {
+//         continue;
+//       }
+//       result += arr[j][i];
+//     }
+//   }
+//   return result;
+// }
+
+
+// let input = [
+//   //
+//   'hello',
+//   'wolrd',
+// ];
+// let output = readVertically(input);
+// console.log(output); // --> 'hweolllrod'
+
+// input = [
+//   //
+//   'hi',
+//   'wolrd',
+// ];
+// output = readVertically(input);
+// console.log(output); // --> 'hwiolrd'
+
+
+// 문제
+// function add(x, y) {
+//   console.log(x, y);   // 2 3
+//   return x + y;
+// }
+
+// add(2, 3);
+// console.log(x, y)     // x is not defined
+
+
+// 이상적인 함수는 한가지 일만 해야하며 가급적 크게 만들어야한다  // x(작게)
+// function키워드 대신 화살표를 사용할 때 항상 익명함수를 사용해야한다. // o
+
+이름을 매개변수로 전달받아 다양한 이름을 프린트 할 수 있게 함수를 수정하고 매개변수로 전달받은 이름을 반환하게 함수를 수정하시오 예) “안녕 내 이름은 에밀리야”, “안녕 내 이름은 할리야”
+
+function greet(Name) {
+  console.log("안녕 내 이름은", Name, "야");
+  return Name;
 }
-
-
-let input = [
-  //
-  'hello',
-  'wolrd',
-];
-let output = readVertically(input);
-console.log(output); // --> 'hweolllrod'
-
-input = [
-  //
-  'hi',
-  'wolrd',
-];
-output = readVertically(input);
-console.log(output); // --> 'hwiolrd'
+const Name = greet("plla2");
+console.log("안녕 내 이름은", Name, "이야");

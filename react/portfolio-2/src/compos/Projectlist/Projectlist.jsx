@@ -7,7 +7,7 @@ import space from "../../images/space.png"
 import todo from "../../images/todo.png"
 import { Col, Container, Row } from 'react-bootstrap'
 import ProjectCard from './ProjectCard';
-
+import "../../pages/style.css";
 function Projectlist() {
   return (
     <div className="projectbackground">
@@ -20,7 +20,7 @@ function Projectlist() {
             </Col>
 
             <Col md={4} className='project-card'>
-              <ProjectCard imgPath={kakaomap} isBlog={false} title="Kakaomap-Clone" description="검색창을 만들어 그곳에 장소나 도로 주소 등을 입력하면 지도상에 마크업되는 형태로 만들었습니다. React + kakao API + styled-components를 활용하였습니다."
+              <ProjectCard imgPath={kakaomap} isBlog={false} title="Kakaomap-Clone" description="검색창을 만들어 그곳에 장소나 도로 주소 등을 입력하면 지도상에 마크업되는 형태로 만들었습니다. React+kakao API+styled-components를 활용하였습니다."
                 ghLink="https://github.com/plla2/kakao-map" />
             </Col>
 

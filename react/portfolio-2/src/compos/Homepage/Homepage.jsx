@@ -2,7 +2,7 @@ import React from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
 import Text from './Text'
 import { AiFillGithub, AiFillBook } from "react-icons/ai"
-
+import "../../pages/style.css";
 function Homepage() {
   return (
     <div className="homepagebackground">

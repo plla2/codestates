@@ -7,6 +7,7 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Project from './pages/Project';
 import Contact from './pages/Contact';
+import "./App.css";
 
 function App() {
   const [load, setLoad] = useState(true);
@@ -47,7 +48,7 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <motion.div className="cursor" variants={variants} animate="default" />
-        <Preloader load={load}></Preloader>
+        <Preloader load={load} />
         <div className="App" id={load ? "no-scroll" : "scroll"}>
           <Routes>
             <Route path="/" element={<Home />}></Route>

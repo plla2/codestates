@@ -1,6 +1,6 @@
 import React from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
-
+import "../../pages/style.css";
 function Aboutpage() {
   return (
     <div className="aboutpagebackground">

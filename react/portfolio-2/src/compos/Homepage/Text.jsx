@@ -1,6 +1,6 @@
 import React from 'react'
 import Typewriter from "typewriter-effect";
-
+import "../../pages/style.css";
 function Text() {
   return (
     <Typewriter

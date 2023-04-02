@@ -1,6 +1,6 @@
 import React from 'react'
 import { Container } from 'react-bootstrap'
-
+import "../../pages/style.css";
 function Contactpage() {
   return (
     <div className="contactbackground">

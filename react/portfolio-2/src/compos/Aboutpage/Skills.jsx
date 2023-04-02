@@ -1,6 +1,6 @@
 import React from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
-
+import "../../pages/style.css";
 function Skills() {
   return (
     <Container>

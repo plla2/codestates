@@ -3,7 +3,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import { Button } from 'react-bootstrap';
 import Nav from 'react-bootstrap/Nav';
 import { Link } from 'react-router-dom';
-
+import "../../pages/style.css";
 function Header() {
   const [expand, updateExpanded] = useState(false);
   const [navColour, updateNavbar] = useState(false);
