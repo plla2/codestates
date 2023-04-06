@@ -221,7 +221,7 @@
 // console.log(output); // --> 'hwiolrd'
 
 
-// 문제
+// // 문제
 // function add(x, y) {
 //   console.log(x, y);   // 2 3
 //   return x + y;
@@ -233,12 +233,94 @@
 
 // 이상적인 함수는 한가지 일만 해야하며 가급적 크게 만들어야한다  // x(작게)
 // function키워드 대신 화살표를 사용할 때 항상 익명함수를 사용해야한다. // o
+// 함수선언문은 함수이름을 생략할 수 있다. // x
 
-이름을 매개변수로 전달받아 다양한 이름을 프린트 할 수 있게 함수를 수정하고 매개변수로 전달받은 이름을 반환하게 함수를 수정하시오 예) “안녕 내 이름은 에밀리야”, “안녕 내 이름은 할리야”
+// 이름(name)을 매개변수로 전달받아 다양한 이름을 프린트 할 수 있게 함수를 만들고 
+// 매개변수로 전달받은 이름을 콘솔로그로 반환하게 함수를 수정하시오 예) “안녕 내 이름은 에밀리야”, “안녕 내 이름은 할리야”
 
-function greet(Name) {
-  console.log("안녕 내 이름은", Name, "야");
-  return Name;
+// function greet(Name) {
+//   console.log("안녕 내 이름은", Name, "야");
+//   // return Name;
+// }
+// greet("plla2");
+// // console.log("안녕 내 이름은", Name, "이야");
+// const greet = (Name) => {
+//   console.log(`안녕 내이름은 ${Name}`)
+// }
+
+// function modulo(num1, num2) {
+//   // TODO: 여기에 코드를 작성합니다.
+//   if (num2 === 0) { return 'Error: cannot divide by zero' }
+//   if (num1 === 0) { return 0 };
+//   while (num1 >= num2) {
+//     num1 = num1 - num2
+//   }
+//   return num1
+// }
+
+// let output = modulo(25, 4);
+// console.log(output); // --> 1
+
+// function isIsogram(str) {
+//   //빈 문자열을 입력받은 경우, true를 리턴
+//   if (str.length === 0) {
+//     return true;
+//   }
+//   //새로운 문자열 선언
+//   let result = {};
+//   //모두 소문자로 정리
+//   let strLowered = str.toLowerCase();
+
+//   for (let i = 0; i < strLowered.length; i++) {
+//     if (result[strLowered[i]]) {
+//       return false;
+//     }
+//     result[strLowered[i]] = true;
+//   }
+
+//   return true;
+// }
+
+// let output = isIsogram('aba');
+// console.log(output); // false
+
+// output = isIsogram('Dermatoglyphics');
+// console.log(output); // true
+
+// output = isIsogram('moOse');
+// console.log(output); // false
+
+
+// function numberSearch(str) {
+//   let strLength = 0;
+//   let sum = 0;
+
+//   if (str.length === 0) return 0;
+
+//   for (let i = 0; i < str.length; i++) {
+//     let numbering = Number(str[i]);
+//     if (isNaN(numbering)) strLength++;
+//     else sum += numbering;
+//   }
+
+//   return Math.round(sum / strLength);
+
+// }
+// let output = numberSearch('Hello6 ');
+// console.log(output); // --> 1
+
+// output = numberSearch('Hello6 9World 2,');
+// console.log(output); // --> 2
+
+// output = numberSearch('Hello6 9World 2, Nic8e D7ay!');
+// console.log(output); // --> 2
+
+function computeSquareRoot(num) {
+  return Number((Math.pow(num, 0.5)).toFixed(2));
 }
-const Name = greet("plla2");
-console.log("안녕 내 이름은", Name, "이야");
+
+let output = computeSquareRoot(9);
+console.log(output); // --> 3
+
+output = computeSquareRoot(6);
+console.log(output); // --> 2.45
