@@ -1,4 +1,5 @@
 // let output1 = letterCapitalize('hello world');
+// import { func } from 'prop-types';
 
 // console.log(output1); // "Hello World"
 // let output2 = letterCapitalize('javascript  is sexy ');
@@ -315,12 +316,114 @@
 // output = numberSearch('Hello6 9World 2, Nic8e D7ay!');
 // console.log(output); // --> 2
 
-function computeSquareRoot(num) {
-  return Number((Math.pow(num, 0.5)).toFixed(2));
+// function computeSquareRoot(num) {
+//   return Number((Math.pow(num, 0.5)).toFixed(2));
+// }
+
+// let output = computeSquareRoot(9);
+// console.log(output); // --> 3
+
+// output = computeSquareRoot(6);
+// console.log(output); // --> 2.45
+
+// 문제1: 
+// 동일한 프로퍼티를 갖는 객체를 여러개 생성해야할때는 객체리터럴보다 객체생성자함수가 더 효율적이다. 
+// (o)
+
+// 생성자함수가 인스턴스를 생성하는 것은 옵션이고, 생성된 인스턴스를 초기화하는 것은 필수이다.
+// (x)
+
+// new 연산자와 함께 생성자 함수로서 호출되면 함수 내부의 new.target은 undefined이고,
+//   new연산자 없이 일반함수로 호출된 함수 내부의 new.target은 함수 자신이다. 
+//   (x)
+
+// 문제2:
+// const greet1 = Greet(15);
+
+// console.log(greet1);  // undefined
+
+// console.log(radius)  // 15
+
+// // new 연산자와 함께 호출하지 않으면 생성자 함수로 동작하지 않음.
+// // 즉, 일반함수로 호출된다.
+
+// // 일반함수로서 호출된 Greet은 반환문이 없기 때문에 undefined를 반환
+// // 일반함수로서 호출된 Greet 내에서 this는 전역 객체를 가리킴.
+
+// 문제3:
+// function UserInfo(name, age, address) {
+//   this.name = name;
+//   this.age = age;
+//   this.address = address;
+
+//   return {
+//     name="현승",
+//     age=26,
+//     address="광주",
+//   }
+// }
+
+// let userInfo = new UserInfo('승현', 25, '서울');
+
+// console.log(userInfo);
+// console.log(userInfo instanceof UserInfo);
+
+// {name: '현승', age:26}
+// false
+
+// 생성자함수에 return문이 존재하면, this대신 return문에 존재하는 값이 반환됨.
+// 그러므로 instanceof 연산자를 사용하면 false가 나온다.
+
+// function Product(name, price) {
+//   this.name = name;
+//   this.price = price
+
+//   function val() {
+//     price += price * 0.1
+//   }
+//   console.log(product1, val())
+//   console.log(product2, val())
+// }
+// const product1 = new Product("shirts", 50000)
+// const product2 = new Product("pants", 60000)
+
+
+// function Product(name, price) {
+//   this.name = name;
+//   this.price = price;
+//   this.vat = function () {
+//     console.log(this.price * 0.1)
+//   }
+// }
+
+// let product1 = new Product('shirts', 50000);
+// let product2 = new Product('pants', 60000);
+// console.log(product1)
+// console.log(product2)
+
+function decryptCaesarCipher(str, secret) {
+  let newStr = '';
+  // str을 split으로 다 자른다.
+  let splitStr = str.split('')
+  // 자른 newStr에 for...of로 모든 배열들을 다 찾아서
+  for (let i of splitStr) {
+    // 만약 빈칸이면
+    if (i === ' ') {
+      // 빈칸을 넣고
+      newStr = newStr + ' '
+    } else {
+      // 만약 아스키 코드 표에서 소문자가 되는 97을 넘으면 맞으면, secret이동 후에 - 122(최대 숫자) 총 알파벳 갯수가 26개 니까 나머지에 122 더한다.
+      // 97보다 작으면, secret이동 후에 - 122 그리고 26 나눠서 나머지에 마찬가지 122 더한다.
+      newStr = newStr + String.fromCharCode((i.charCodeAt(0) > 97)
+        ? (i.charCodeAt(0) - secret - 122) % 26 + 122
+        : (i.charCodeAt(0) - secret - 122) % 26 + 122)
+    };
+  }
+  return newStr;
 }
 
-let output = computeSquareRoot(9);
-console.log(output); // --> 3
+let output = decryptCaesarCipher('khoor', 3);
+console.log(output); // --> hello
 
-output = computeSquareRoot(6);
-console.log(output); // --> 2.45
+output = decryptCaesarCipher('zruog', 3);
+console.log(output); // --> world
