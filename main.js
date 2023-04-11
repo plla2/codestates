@@ -401,29 +401,130 @@
 // console.log(product1)
 // console.log(product2)
 
-function decryptCaesarCipher(str, secret) {
-  let newStr = '';
-  // str을 split으로 다 자른다.
-  let splitStr = str.split('')
-  // 자른 newStr에 for...of로 모든 배열들을 다 찾아서
-  for (let i of splitStr) {
-    // 만약 빈칸이면
-    if (i === ' ') {
-      // 빈칸을 넣고
-      newStr = newStr + ' '
-    } else {
-      // 만약 아스키 코드 표에서 소문자가 되는 97을 넘으면 맞으면, secret이동 후에 - 122(최대 숫자) 총 알파벳 갯수가 26개 니까 나머지에 122 더한다.
-      // 97보다 작으면, secret이동 후에 - 122 그리고 26 나눠서 나머지에 마찬가지 122 더한다.
-      newStr = newStr + String.fromCharCode((i.charCodeAt(0) > 97)
-        ? (i.charCodeAt(0) - secret - 122) % 26 + 122
-        : (i.charCodeAt(0) - secret - 122) % 26 + 122)
-    };
+// function decryptCaesarCipher(str, secret) {
+//   let newStr = '';
+//   // str을 split으로 다 자른다.
+//   let splitStr = str.split('')
+//   // 자른 newStr에 for...of로 모든 배열들을 다 찾아서
+//   for (let i of splitStr) {
+//     // 만약 빈칸이면
+//     if (i === ' ') {
+//       // 빈칸을 넣고
+//       newStr = newStr + ' '
+//     } else {
+//       // 만약 아스키 코드 표에서 소문자가 되는 97을 넘으면 맞으면, secret이동 후에 - 122(최대 숫자) 총 알파벳 갯수가 26개 니까 나머지에 122 더한다.
+//       // 97보다 작으면, secret이동 후에 - 122 그리고 26 나눠서 나머지에 마찬가지 122 더한다.
+//       newStr = newStr + String.fromCharCode((i.charCodeAt(0) > 97)
+//         ? (i.charCodeAt(0) - secret - 122) % 26 + 122
+//         : (i.charCodeAt(0) - secret - 122) % 26 + 122)
+//     };
+//   }
+//   return newStr;
+// }
+
+// let output = decryptCaesarCipher('khoor', 3);
+// console.log(output); // --> hello
+
+// output = decryptCaesarCipher('zruog', 3);
+// console.log(output); // --> world
+
+// function compressString(str) {
+//   // 연속되는 문자를 기록하기 위한 변수
+//   // 첫 번째 문자로 초기화
+//   let before = str[0];
+
+//   // 동일한 문자의 반복 횟수
+//   let count = 1;
+
+//   // 정답으로 리턴할 문자열
+//   let result = '';
+
+//   // 마지막 부분이 연속된 문자일 경우를 위해 dummy 문자 추가
+//   str = str + ' ';
+//   for (let i = 1; i < str.length; i++) {
+//     // 동일한 문자가 반복될 경우
+//     if (before === str[i]) {
+//       count++;
+//     } else {
+//       // 이전과 다른 문자일 경우,
+//       // 반복된 횟수가 3 이상일 경우에만 압축을 한다.
+//       if (count >= 3) {
+//         result = result + `${count}${before}`;
+//       } else {
+//         result = result + before.repeat(count);
+//       }
+//       before = str[i];
+//       count = 1;
+//     }
+//   }
+
+//   return result;
+// }
+
+// let output = compressString('abc');
+// console.log(output); // --> abc
+
+// output = compressString('wwwggoppopppp');
+// console.log(output); // --> 3wggoppo4p
+
+// function fibonacci(num){
+//   if(num<=1) return num;
+//   return fibonacci(num-1) + fibonacci(num-2)
+// }
+
+// function findMatryoshka(matryoshka,size){
+//   if(matryoshka.size===size) return true;
+//   if(matryoshka.matryoshka) return findMatryoshka(matryoshka.matryoshka,size)
+//   return false;
+// }
+
+function unpackGiftbox(giftBox, wish) {
+  // TODO: 여기에 코드를 작성합니다.
+  for (let i = 0; i < giftBox.length; i++) {
+    if (giftBox[i] === wish) return true;
+    else if (Array.isArray(giftBox[i])) {
+      if (unpackGiftbox(giftBox[i], wish) === true) return true;
+    }
   }
-  return newStr;
+  return false;
 }
 
-let output = decryptCaesarCipher('khoor', 3);
-console.log(output); // --> hello
 
-output = decryptCaesarCipher('zruog', 3);
-console.log(output); // --> world
+// 스터디 비동기 문제
+
+//문제 1
+
+// function foo(){
+//   console.log('foo');
+// }
+// function bar(){
+//   console.log('bar');
+// }
+
+// setTimeout(foo,0);
+// bar();
+
+// 1. 전역코드가 평가되어 전역 실행 컨텍스트가 생성되고 콜스택에 푸시된다
+// 2. 전역코드가 실행되기 시작하여 setTimeout 함수가 호출된다. 이때 setTimeout 함수의 함수 실행 컨텍스트가 생성되고,
+// 콜스택에 푸쉬되어 현재 실행중인 실행 컨텍스트가 된다
+// 3. setTimeout 함수가 실행되면 콜백 함수를 호출 스케줄링하고 종료되어 콜스택에 팝된다. 이때 호출 스케줄링, 즉
+// 타이머 설정과 타이머가 만료되면 콜백함수를 태스크 큐에 푸시하는 것은 자바스크립트엔진의 역할이다. (x 브라우저의 역할)
+// 4-1과 4-2는 병행처리된다.
+// 4-1. 이후 타이머가 만료되면 콜백 함수 foo가 태스크 큐에 푸쉬된다. 이 처리는 브라우저가 수행한다.
+// 4-2. bar 함수가 호출되어 bar 함수의 함수 실행 컨텍스트가 생성되고 콜스택에 푸시되어 현재 실행중인 실행 컨텍스트가 된다. 이후 bar함수가 종료되어 콜스택에서 팝된다.
+// 5. 전역 코드 실행이 종료되고 전역 실행 컨텍스트가 콜스택에서 팝된다. 하지만 콜스택에는 실행 컨텍스트가 존재한다.(x, 아무런 실행 컨텍스트가 존재하지않음)
+// 6. 이벤트 루프에 의해 콜스택이 비어있음이 감지되고, 태스크 큐에서 대기중인 콜백함수 foo가 이벤트 루프에 의해 콜스택에 푸시된다. 
+
+
+// 문제 2
+// JSON.stringify , JSON.parse 각각 직렬화? 역직렬화?
+// 자바스크립트가 싱글스레드로 동작하는 것은 브라우저에 내장된 자바스크립트의 엔진이 아니라 브라우저에서 동작하는 것이다.
+// 요청메서드 5가지 중 페이로드 유,무가 틀린 것은?
+// GET : X 
+// POST : O
+// PUT : X
+// PATCH : X
+// DELETE : X
+
+// 문제3
+// 1. 힙 2. 콜스택 3. 태스크 큐 4. Web API
