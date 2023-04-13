@@ -478,16 +478,16 @@
 //   return false;
 // }
 
-function unpackGiftbox(giftBox, wish) {
-  // TODO: 여기에 코드를 작성합니다.
-  for (let i = 0; i < giftBox.length; i++) {
-    if (giftBox[i] === wish) return true;
-    else if (Array.isArray(giftBox[i])) {
-      if (unpackGiftbox(giftBox[i], wish) === true) return true;
-    }
-  }
-  return false;
-}
+// function unpackGiftbox(giftBox, wish) {
+//   // TODO: 여기에 코드를 작성합니다.
+//   for (let i = 0; i < giftBox.length; i++) {
+//     if (giftBox[i] === wish) return true;
+//     else if (Array.isArray(giftBox[i])) {
+//       if (unpackGiftbox(giftBox[i], wish) === true) return true;
+//     }
+//   }
+//   return false;
+// }
 
 
 // 스터디 비동기 문제
@@ -528,3 +528,58 @@ function unpackGiftbox(giftBox, wish) {
 
 // 문제3
 // 1. 힙 2. 콜스택 3. 태스크 큐 4. Web API
+
+// function prepareOne() {
+//   let start = new Date().getTime();
+//   console.log('일을 마쳤습니다.')
+//   while (new Date().getTime() < start + 333) { }
+// }
+
+// console.log("Start Job!");
+// prepareOne();
+// prepareOne();
+// prepareOne();
+// console.log("Finish Job!");
+
+// const arr = [1, 2, 3, 4, 5];
+
+// function arrSum(arr) {
+//   if (arr.length === 0) {
+//     return 0;
+//   }
+
+//   return (arr.shift() + arrSum(arr));
+// }
+// console.log(arrSum(arr))
+
+// restAPI 스터디 문제
+
+// 1. REST의 특징의 설명이 맞는지 틀린지 고르시오
+// 1-1 캐시사용을 통해 REST Server 트랜잭션이 발생하기 때문에 전체 응답시간, 성능, 서버의 자원 이용률을 향상
+// 1-2 RESTAPI 사용을 위해 별도의 인프라를 구축해야한다.
+// 1-3 HTTP 표준 프로토콜에 따르는 모든 플랫폼에서 사용 가능하다.
+// 1-4 서버와 클라이언트의 역할을 명확하게 분리한다.
+
+// 1번 답: X X O O 
+// 1번설명 : 캐시 사용을 통해 REST Server 트랜잭션이 발생하지 않기때문에 전체 응답시간, 성능, 서버의 자원이용률이 향상된다.
+// 트랜잭션은 데이터베이스의 상태를 변환시키는 하나의 논리적 기능을 수행하기 위한 작업의 단위
+// 2번설명 : HTTP 프로토콜의 인프라를 그대로 사용하므로 RESTAPI 사용을위한 별도의 인프라를 구축할 필요없음
+
+// 2. 다음 중 RESTAPI 설계 기본규칙 중 잘못된것을 모두 고르고 간단한 이유를 쓰세요.
+// 2-1 http://myblog.com/test/
+// 2-2 http://myblog.com/delete-posts/123
+// 2-3 http://myblog.com/test-blog
+// 2-4 http://myblog.com/posts/123
+
+// 2번 답: 2-1 : 맨뒤에 /를 빼야함, 2-2 : 행위를 표현하면 안되기에 delete쓰면안됨
+
+
+// 3. 응답상태 코드와 설명을 알맞게 짝지으세요
+// 1xx, 2xx, 3xx, 4xx, 5xx
+// 클라이언트는 요청을 완료하기 위해 추가적인 행동을 취해야함.
+// 서버쪽 오류로 인한 상태코드.
+// 클라이언트 요청이 성공적으로 수행됨.
+// 전송 프로토콜 수준의 정보 교환.
+// 클라이언트의 잘못된 요청.
+
+// 3번 답 : 순서대로 3xx, 5xx, 2xx, 1xx, 4xx
