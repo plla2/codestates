@@ -584,23 +584,83 @@
 
 // 3번 답 : 순서대로 3xx, 5xx, 2xx, 1xx, 4xx
 
-let output = bubbleSort([2, 1, 3]);
-console.log(output);
+// let output = bubbleSort([2, 1, 3]);
+// console.log(output);
 
-const bubbleSort = function (arr) {
-  // TODO: 여기에 코드를 작성합니다.
-  for (let i = 0; i < arr.length; i++) {
-    let swap;
-    for (let j = 0; j < arr.length - 1 - i; j++) {
-      if (arr[j] > arr[j + 1]) {
-        swap = arr[j];
-        arr[j] = arr[j + 1];
-        arr[j + 1] = swap;
-      }
-    }
-    if (!swap) {
-      break;
-    }
-  }
-  return arr;
-};
+// const bubbleSort = function (arr) {
+//   // TODO: 여기에 코드를 작성합니다.
+//   for (let i = 0; i < arr.length; i++) {
+//     let swap;
+//     for (let j = 0; j < arr.length - 1 - i; j++) {
+//       if (arr[j] > arr[j + 1]) {
+//         swap = arr[j];
+//         arr[j] = arr[j + 1];
+//         arr[j + 1] = swap;
+//       }
+//     }
+//     if (!swap) {
+//       break;
+//     }
+//   }
+//   return arr;
+// };
+
+// 프로미스 문제
+// 1번문제
+// 1-1. Promise.all 메서드는 여러개의 비동기처리를 모두 병렬처리할때 사용하며,
+// Promise.all(수행할일1,수행할일2,수행할일3)로 작성하면된다.
+
+// 1-2. fetch함수에서 잘못된 url이 지정되면 catch문에서 프로미스를 reject한다.
+// fetch(url)
+//   .then(() => console.log('okay'))
+//   .catch(() => console.log('error'))
+
+// 1-3. Promise.all과 Promise.allSettled의 차이는
+// Promise.all은 메서드가 하나라도 실패해도 모든 promise들의 결과를 받을 수 있다,
+// 하지만 Promise.allSettled는 하나라도 실패하면 그 이후의 promise들의 결과는 무시하고 바로 에러로 빠져버린다. 
+
+
+// 1번문제 답 XXX
+// 1-1 Promise.all([수행할일1, 수행할일2, 수행할일3])로 작성해야함.
+// 1-2 fetch 함수는 HTTP에러가 발생해도 에러를 reject를 하지않고 불리언타입의 ok 상태를 false로 설정한 response를 resolve한다.
+// 1-3 Promise.all은 하나라도 실패하면 그 이후의 promise들의 결과는 무시하고 바로 에러로 빠져버린다.
+// 하지만 Promise.allSettled는 메서드가 하나라도 실패해도 모든 promise들의 결과를 받을 수 있다
+
+// 2번문제
+// 콘솔에 찍힐답을 예상해보고 문제점을 해결해보세요 !
+// function buy(item, price, quantity) {
+//   console.log(item + "상품을" + quantity + "개를 골라서 점원에게 주었습니다.");
+
+//   setTimeout(() => {
+//     console.log("계산할 시간이 필요합니다.");
+//     let total = price * quantity;
+//     return total;
+//   }, 1000)
+// }
+
+// function pay(tot) {
+//   console.log(tot + "원을 지불하였습니다.")
+// }
+
+// pay((buy("공기청정기", 10000, 5)));
+
+// 2번 답: 공기청정기상품을5개를 골라서 점원에게 주었습니다.
+// undefined원을 지불하였습니다.
+// 계산할 시간이 필요합니다.
+function buy(item, price, quantity) {
+  console.log(item + "상품을" + quantity + "개를 골라서 점원에게 주었습니다.");
+
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      console.log("계산할 시간이 필요합니다.");
+      let total = price * quantity;
+      resolve(total);
+    }, 1000)
+  })
+}
+
+function pay(tot) {
+  console.log(tot + "원을 지불하였습니다.")
+}
+
+buy("공기청정기", 10000, 5).then(n => pay(n));
