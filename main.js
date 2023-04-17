@@ -583,3 +583,24 @@
 // 클라이언트의 잘못된 요청.
 
 // 3번 답 : 순서대로 3xx, 5xx, 2xx, 1xx, 4xx
+
+let output = bubbleSort([2, 1, 3]);
+console.log(output);
+
+const bubbleSort = function (arr) {
+  // TODO: 여기에 코드를 작성합니다.
+  for (let i = 0; i < arr.length; i++) {
+    let swap;
+    for (let j = 0; j < arr.length - 1 - i; j++) {
+      if (arr[j] > arr[j + 1]) {
+        swap = arr[j];
+        arr[j] = arr[j + 1];
+        arr[j + 1] = swap;
+      }
+    }
+    if (!swap) {
+      break;
+    }
+  }
+  return arr;
+};
