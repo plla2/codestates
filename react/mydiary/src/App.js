@@ -43,10 +43,17 @@ function App() {
     setData([newItem, ...data])
     // 원래배열에 있던 데이터를 스프레드 연산자로 쓰고, 새로운 데이터를 newItem으로 앞에 추가
   }
+  const onRemove = (targetID) => {
+    const newDiaryList = data.filter((el) => el.id !== targetID);
+    setData(newDiaryList)
+  }
+  const onEdit = (targetID, newContent) => {
+    setData(data.map((el) => el.id === targetID ? { ...el, content: newContent } : el))
+  }
   return (
     <div className="App">
       <DiaryEditor onCreate={onCreate} />
-      <DiaryList diaryList={data} />
+      <DiaryList onEdit={onEdit} onRemove={onRemove} diaryList={data} />
     </div>
   );
 }

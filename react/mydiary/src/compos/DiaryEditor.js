@@ -23,10 +23,8 @@ function DiaryEditor({ onCreate }) {
       contentTextarea.current.focus();
       return;
     }
-    // props로 받은 onCreate를 호출
     onCreate(state.author, state.content, state.emotion);
     alert("저장 성공!")
-    // 저장완료되면 상태는 초기값으로 재설정
     setState({
       author: "",
       content: "",
