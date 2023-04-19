@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import './App.css';
 import DiaryList from './DiaryList';
 import DiaryEditor from './compos/DiaryEditor';
@@ -29,6 +29,26 @@ function App() {
   // ]
   const [data, setData] = useState([]);
   const dataId = useRef(0);
+
+  const getData = async () => {
+    const res = await fetch("https://jsonplaceholder.typicode.com/comments").then((res) => res.json())
+    // console.log(res)
+    const initData = res.slice(0, 20).map((el) => {
+      return {
+        author: el.email,
+        content: el.body,
+        emotion: Math.floor(Math.random() * 5) + 1,
+        created_date: new Date().getTime(),
+        id: dataId.current++,
+      };
+    });
+    setData(initData);
+  };
+
+  useEffect(() => {
+    getData()
+  }, []);
+
   const onCreate = (author, content, emotion) => {
     const created_date = new Date().getTime();
     const newItem = {
@@ -50,9 +70,24 @@ function App() {
   const onEdit = (targetID, newContent) => {
     setData(data.map((el) => el.id === targetID ? { ...el, content: newContent } : el))
   }
+
+  const getDiaryAnalysis = useMemo(() => {
+    console.log("일기 분석 시작")
+    let goodCount = data.filter((el) => el.emotion >= 3).length
+    let badCount = data.length - goodCount
+    let goodRatio = (goodCount / data.length) * 100
+    return { goodCount, badCount, goodRatio };
+  }, [data.length]);
+
+  const { goodCount, badCount, goodRatio } = getDiaryAnalysis;
+
   return (
     <div className="App">
       <DiaryEditor onCreate={onCreate} />
+      <div>전체 일기: {data.length} 개</div>
+      <div>날씨 좋았던 날: {goodCount} 개</div>
+      <div>날씨 안좋았던 날: {badCount} 개</div>
+      <div>날씨 좋은날 비율: {goodRatio} %</div>
       <DiaryList onEdit={onEdit} onRemove={onRemove} diaryList={data} />
     </div>
   );
