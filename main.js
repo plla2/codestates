@@ -619,8 +619,11 @@
 // Promise.all은 메서드가 하나라도 실패해도 모든 promise들의 결과를 받을 수 있다,
 // 하지만 Promise.allSettled는 하나라도 실패하면 그 이후의 promise들의 결과는 무시하고 바로 에러로 빠져버린다. 
 
+// 1-4. async 코드 최적화에서 await은 Promise가 끝날때까지 기다리면서,
+// 끝나면 resolve에서 값만 추출해 반환한다.
 
-// 1번문제 답 XXX
+
+// 1번문제 답 XXXO
 // 1-1 Promise.all([수행할일1, 수행할일2, 수행할일3])로 작성해야함.
 // 1-2 fetch 함수는 HTTP에러가 발생해도 에러를 reject를 하지않고 불리언타입의 ok 상태를 false로 설정한 response를 resolve한다.
 // 1-3 Promise.all은 하나라도 실패하면 그 이후의 promise들의 결과는 무시하고 바로 에러로 빠져버린다.
@@ -647,20 +650,166 @@
 // 2번 답: 공기청정기상품을5개를 골라서 점원에게 주었습니다.
 // undefined원을 지불하였습니다.
 // 계산할 시간이 필요합니다.
-function buy(item, price, quantity) {
-  console.log(item + "상품을" + quantity + "개를 골라서 점원에게 주었습니다.");
+// function buy(item, price, quantity) {
+//   console.log(item + "상품을" + quantity + "개를 골라서 점원에게 주었습니다.");
 
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      console.log("계산할 시간이 필요합니다.");
-      let total = price * quantity;
-      resolve(total);
-    }, 1000)
-  })
-}
+//   return new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//       console.log("계산할 시간이 필요합니다.");
+//       let total = price * quantity;
+//       resolve(total);
+//     }, 1000)
+//   })
+// }
 
-function pay(tot) {
-  console.log(tot + "원을 지불하였습니다.")
-}
+// function pay(tot) {
+//   console.log(tot + "원을 지불하였습니다.")
+// }
 
-buy("공기청정기", 10000, 5).then(n => pay(n));
+// buy("공기청정기", 10000, 5).then(n => pay(n));
+
+
+// 문제 3
+// function delay() {
+//   return new Promise((resolve, reject) => {
+//     setTimeout(() => resolve(), 1000);
+//   })
+// }
+
+// async function getApple() {
+//   await delay();
+//   return "apple";
+// }
+
+// async function getBanana() {
+//   await delay();
+//   return "banana";
+// }
+
+// function getFruites() {
+//   getApple()
+//     .then((a) => {
+//       getBanana()
+//         .then((b) => console.log(`${a} and ${b}`));
+//     }) // 콜백지옥
+
+// }
+
+// getFruites();
+
+// 3번문제 답:
+// 결과: apple and banana
+// delay()라는 프로미스 객체 비동기 함수를 만들고,
+//   각 async함수 getApple, getBanana에서 동기처리를 한다.
+// 리턴값이 곧 resolve()니까 then 가능
+
+// // let set = new Set(["A", "C", "B", "A", "c"]);
+// // console.log(set);// Set { 'A', 'B', 'C', 'c' }
+
+// function setTimeoutPromise(ms) {
+//   //promise 객체를 반환
+//   //ms만큼 기다린후 Promise를 resolve합니다.
+//   return new Promise((resolve, reject) => {
+//     setTimeout(() => resolve(), ms);
+//   });
+// }
+// //위의 코드는 수정하지 마세요!
+
+// async function fetchAge(id) {
+//   await setTimeoutPromise(1000);
+//   //해당 promise 객체가 resolve 상태가 될때까지 기다립니다.
+//   //fetchAge 함수를 10번 호출하는데에 10초 정도 걸립니다.
+//   console.log(`${id} 데이터 받아오기 완료!`);
+//   return parseInt(Math.random() * 20, 10) + 25;
+// }
+// //위의 코드는 수정하지 마세요!
+
+// async function startAsyncJobs() {
+//   let ages = [];
+//   for (let i = 0; i < 10; i++) {
+//     let age = fetchAge(i);
+//     //위의 코드에서 await을 지우고 promise.all을 사용해서 코드 동작시간을 1초로 줄여보세요
+//     ages.push(age);
+//   }
+
+//   //todo : promise.all을 사용할것
+//   let promises = Promise.all([fetchAge(), startAsyncJobs()]).then(console.log(promises))
+
+//   console.log(
+//     //밑에 있는 변수명을 적절하게 변경해주세요.
+//     `평균 나이는? ==> ${ages.reduce((prev, current) => prev + current, 0) / ages.length
+//     //reduce문을 활용하여 평균값을 구하는 고차함수입니다.
+//     }`
+//   );
+// }
+
+// startAsyncJobs();
+
+
+// async function wait() {
+//   await new Promise(resolve => setTimeout(resolve, 1000));
+
+//   return 10;
+// }
+
+// function f() {
+
+//   // ...코드...
+//   // async wait()를 호출하고 그 결과인 10을 얻을 때까지 기다리려면 어떻게 해야 할까요?
+//   // f는 일반 함수이기 때문에 여기선 'await'를 사용할 수 없다는 점에 주의하세요!
+// }
+
+// f();
+
+// 이터러블 문제
+// 문제 1
+// 평범한 객체 range를 이터러블 객체로 만들때 빈칸에 알맞은것을 쓰고, 
+// 무엇이 이터러블객체이고, 이터레이터인지 쓰시오.
+// let range = {
+//   승현: 10,
+//   나: 20
+// };
+
+// range[Symbol.iterator] = function () {
+//   return {
+//     정승현: this.승현,
+//     나는나: this.나,
+
+//     next() {
+//       if (this.정승현 <= this.나는나) {
+//         return { done: false, value: this.정승현++ };
+//       } else {
+//         return { done: true }
+//       }
+//     }
+//   }
+// }
+
+// 1번 답: 768~773 function() 전까지가 이터러블객체,
+// return{ 부터 785번 } 까지 이터레이터
+
+2번문제
+
+2 - 1 : 다양한 데이터 소스가 각자의 순회 방식을 갖는다면 데이터 소비자는
+      다양한 데이터 소스의 순회방식을 모두 지원하기때문에 효율적이다.
+
+2 - 2 : 일반 객체는 이터러블이 아니다.
+
+2 - 3 : iterator는 무조건 next라고 하는 메서드를 가져야한다.
+
+2번 답: xoo
+2 - 1 비효율적이다. 
+
+
+3번 문제
+다음 6개의 문장 중 각각 이터러블과 이터레이터에 해당하는 설명을 나누시오
+
+랜덤 Access가 가능하다.
+기능이 배열에 비해 상대적으로 적다
+기능이 많다
+메모리 사용량이 많다
+메모리 사용이 효율적이다
+next메서드, 바로 앞 / 뒤 값만 가져올 수 있다.
+
+  이터러블: 1, 3, 4
+이터레이터: 2, 5, 6
