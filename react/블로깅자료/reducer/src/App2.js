@@ -2,6 +2,7 @@
 import React, { useReducer, useState } from 'react'
 import Student from './Student'
 
+
 const reducer = (state, action) => {
   switch (action.type) {
     case 'add-student':
@@ -59,3 +60,5 @@ function App2() {
 }
 
 export default App2
+
+

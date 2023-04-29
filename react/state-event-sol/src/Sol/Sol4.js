@@ -16,9 +16,6 @@ function Sol4() {
 
   return (
     <div>
-      <p>라디오 버튼을 클릭하면 value값을 출력</p>
-      <p>조건: map() 함수를 이용해야함</p>
-      <h1>라디오 버튼의 value 출력</h1>
       <select onChange={changeHandler}>
         {regions.map(region => (
           <option>

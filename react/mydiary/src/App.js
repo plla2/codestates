@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import './App.css';
 import DiaryList from './DiaryList';
 import DiaryEditor from './compos/DiaryEditor';
@@ -49,7 +49,7 @@ function App() {
     getData()
   }, []);
 
-  const onCreate = (author, content, emotion) => {
+  const onCreate = useCallback((author, content, emotion) => {
     const created_date = new Date().getTime();
     const newItem = {
       author,
@@ -60,9 +60,10 @@ function App() {
     }
     dataId.current += 1;
     // dataId.current의 초깃값은 0, 값을 한번쓰면 1씩 증가
-    setData([newItem, ...data])
+    setData((data) => [newItem, ...data])
     // 원래배열에 있던 데이터를 스프레드 연산자로 쓰고, 새로운 데이터를 newItem으로 앞에 추가
-  }
+  }, []);
+
   const onRemove = (targetID) => {
     const newDiaryList = data.filter((el) => el.id !== targetID);
     setData(newDiaryList)
