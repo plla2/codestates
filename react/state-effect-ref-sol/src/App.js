@@ -7,10 +7,10 @@ import Sol4 from './Sol/Sol4';
 function App() {
   return (
     <div className="App">
-      <Sol1 />
+      {/* <Sol1 /> */}
       {/* <Sol2 /> */}
       {/* <Sol3 /> */}
-      {/* <Sol4 /> */}
+      <Sol4 />
     </div>
   );
 }

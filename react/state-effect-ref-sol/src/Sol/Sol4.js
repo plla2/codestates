@@ -10,6 +10,7 @@ function Sol4() {
 
   const clickHandler = () => {
     setText(textRef.current)
+    console.log("렌더링 완료")
   }
   return (
     <div>
