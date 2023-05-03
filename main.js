@@ -851,28 +851,89 @@
 // ooo
 
 // 브라우저 랜더링 문제
-1.
-리플로우 최적화 방법
-1 - 1. 사용하지 않는 노드에는 display:none 보다는 visibility:invisible을 사용한다.
-1 - 2. width, height 등보다는 transform을 사용한다.
-1 - 3. 애니메이션이 들어간 코드는 position: fixed, position:absolute로 지정해 전체 노드에서 분리시킨다.
+// 1.
+// 리플로우 최적화 방법
+// 1 - 1. 사용하지 않는 노드에는 display:none 보다는 visibility:invisible을 사용한다.
+// 1 - 2. width, height 등보다는 transform을 사용한다.
+// 1 - 3. 애니메이션이 들어간 코드는 position: fixed, position:absolute로 지정해 전체 노드에서 분리시킨다.
 
-1 답: XOO
-1 - 1: visibility invisible 은 레이아웃 공간을 차지하기 때문에 reflow 의 대상이 된다.하지만 display none 은 Layout 공간을 차지하지 않아 Render Tree 에서 아예 제외된다.
-1 - 2: 또한 Reflow Repaint가 일어나지 않는 transform, opacitiy와 같은 속성도 있습니다.따라서 left, right, width, height 보다 transform을, visibility / display 보다 opacitiy를 사용하는 것이 성능 개선에 도움이 됩니다.
-1 - 3: position absolute 또는 fixed 를 사용해, 영향을 받는 주변 노드를 줄일 수 있다.애니메이션이 들어간 코드는 가급적 position: fixed, position:absollute 로 지정해 전체 노드에서 분리시킨다.
+// 1 답: XOO
+// 1 - 1: visibility invisible 은 레이아웃 공간을 차지하기 때문에 reflow 의 대상이 된다.하지만 display none 은 Layout 공간을 차지하지 않아 Render Tree 에서 아예 제외된다.
+// 1 - 2: 또한 Reflow Repaint가 일어나지 않는 transform, opacitiy와 같은 속성도 있습니다.따라서 left, right, width, height 보다 transform을, visibility / display 보다 opacitiy를 사용하는 것이 성능 개선에 도움이 됩니다.
+// 1 - 3: position absolute 또는 fixed 를 사용해, 영향을 받는 주변 노드를 줄일 수 있다.애니메이션이 들어간 코드는 가급적 position: fixed, position:absollute 로 지정해 전체 노드에서 분리시킨다.
 
-2. 브라우저 렌더링 과정의 순서를 맞추시오
+// 2. 브라우저 렌더링 과정의 순서를 맞추시오
 
-1. 브라우저 JS엔진은 받아온 JS를 파싱해 AST를 생성하고, 바이트코드로 변환해 실행
-2. 화면에 HTML요소를 페인팅
-3. 브라우저 HTML, CSS, JS, 이미지 등 리소스를 서버에 요청하고, 응답으로 받아옴
-4. 브라우저 렌더링 엔진은 받아온 HTML, CSS를 파싱해 DOM, CSSOM을 생성하고, 이를 결합해 렌더 트리를 생성
-5. 렌더트리를 기반으로 HTML 요소의 레이아웃을 계산
+// 1. 브라우저 JS엔진은 받아온 JS를 파싱해 AST를 생성하고, 바이트코드로 변환해 실행
+// 2. 화면에 HTML요소를 페인팅
+// 3. 브라우저 HTML, CSS, JS, 이미지 등 리소스를 서버에 요청하고, 응답으로 받아옴
+// 4. 브라우저 렌더링 엔진은 받아온 HTML, CSS를 파싱해 DOM, CSSOM을 생성하고, 이를 결합해 렌더 트리를 생성
+// 5. 렌더트리를 기반으로 HTML 요소의 레이아웃을 계산
 
-2 답: 3 4 1 5 2
+// 2 답: 3 4 1 5 2
 
-3. DOM은 문서 객체모델이라고 한다. 1. ? 를 2. ? 로 바꾼 모델이다.
-JS엔진은 js파일의 코드를 3. ? 단위로 분해한다.이렇게 분해된 것에 문법적인 의미와 구조가 더해져, 4. ? 라는 트리가 완성됨.
+// 3. DOM은 문서 객체모델이라고 한다. 1. ? 를 2. ? 로 바꾼 모델이다.
+// JS엔진은 js파일의 코드를 3. ? 단위로 분해한다.이렇게 분해된 것에 문법적인 의미와 구조가 더해져, 4. ? 라는 트리가 완성됨.
 
-1. 문서 2.객체 3. 토큰 4. AST
+// 1. 문서 2.객체 3. 토큰 4. AST
+
+// 1. 콘솔에 찍히는 값은 ?
+// function Person() { }
+
+// let a = new Person();
+// let b = new Person();
+
+// Person.prototype.getTest = function () {
+//   return "plla";
+// };
+
+// Person.prototype.getTest = function () {
+//   return "승현";
+// }
+// console.log(a.getTest());
+
+// 답 1. 
+// 승현
+
+
+// 문제2
+
+// function Person(name) {
+//   this.name = "승현";
+// }
+
+// Person.prototype.getName = function () {
+//   return this.name;
+// }
+
+// function Man(name) { }
+
+// Man.prototype = new Person();
+
+// let man1 = new Man();
+// let man2 = new Man("정승현");
+
+// console.log(man1.getName());
+// console.log(man2.getName());
+
+// 문제2 답:
+// 승현, 승현
+// // 
+
+// // 문제3.
+// let Person = function (name) {
+//   this._name = name;
+// };
+
+// Person.prototype.getName = function () {
+//   return this._name;
+// };
+
+// let plla2 = new Person("plla2");
+// console.log(plla2.__proto__.getName());
+
+// console.log(Person.prototype === plla2.__proto__);
+
+// 문제3 답: undefined, true
+
+// instance의 __proto__ 가 constructor의 prototype 프로퍼티를 참조하므로 둘은 같은 객체를 바라보게 됩니다. (true 부분) 여기서, plla2.__proto__.getName()메서드를  호출하면 undefined가 반환되는 것을 볼 수 있는데,  this에 바인딩된 대상이 잘못 지정되었기 때문임을 알 수 있습니다. ( plla2.__proto__ 객체 내부에는 찾는 식별자가 정의되어 있지 않으면 undefined를 반환합니다 )
