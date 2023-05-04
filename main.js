@@ -937,3 +937,81 @@
 // 문제3 답: undefined, true
 
 // instance의 __proto__ 가 constructor의 prototype 프로퍼티를 참조하므로 둘은 같은 객체를 바라보게 됩니다. (true 부분) 여기서, plla2.__proto__.getName()메서드를  호출하면 undefined가 반환되는 것을 볼 수 있는데,  this에 바인딩된 대상이 잘못 지정되었기 때문임을 알 수 있습니다. ( plla2.__proto__ 객체 내부에는 찾는 식별자가 정의되어 있지 않으면 undefined를 반환합니다 )
+
+// 프로토타입 문제
+// 문제 1.
+// function SuperType() {
+//   this.property = true;
+// }
+
+// SuperType.prototype.getSuperValue = function () {
+//   return this.property;
+// }
+
+// function SubType() {
+//   this.subproperty = false;
+// }
+
+// SubType.prototype = new SuperType();
+// SubType.prototype.getSubValue = function () {
+//   return this.subproperty;
+// }
+
+// let instance = new SubType();
+
+// console.log(instance.getSuperValue());
+
+// 문제1 답: true
+// instance.getSuperValue() 코드는 instance 객체가 SubType의 인스턴스이므로, SubType의 프로토타입인 SuperType의 getSuperValue() 메서드를 호출하게 됩니다. 이 메서드는 SuperType의 프로퍼티인 property 값을 반환하므로, true가 출력됩니다.
+
+// 즉, instance.getSuperValue() 코드는 instance 객체의 프로토타입 체인 상에서 SuperType.prototype 객체의 getSuperValue() 메서드를 호출하는 것이므로, true가 출력됩니다.
+
+// 문제2
+// function SuperType() {
+//   this.property = true;
+// }
+
+// SuperType.prototype.getSuperValue = function () {
+//   return this.property;
+// }
+
+// function SubType() {
+//   this.subproperty = false;
+// }
+
+// SubType.prototype = new SuperType();
+
+// SubType.prototype = {
+//   getSubValue: function () {
+//     return this.subproperty;
+//   },
+
+//   someOtherMethod: function () {
+//     return false;
+//   }
+// };
+
+// let instance = new SubType();
+
+// console.log(instance.getSuperValue());
+
+// 문제2 답: TypeError 
+// 프로토타입에 SuperType의 인스턴스를 할당한 다음 즉시 객체리터럴로 덮어썼습니다. 이제 프로토타입에는 SuperType의 인스턴스가 아니라 Object의 인스턴스가 들어 있으므로 프로토타입 체인이 끊어져서 SubType과 SuperType사이에는 아무 관계도 없습니다.
+
+// 문제3
+let person = {
+  name: "승현",
+  friends: ["민재", "찬우", "근실", "은희"]
+};
+
+let anotherPerson = Object.create(person);
+anotherPerson.name = "민교";
+anotherPerson.friends.push("아윤");
+
+let yetAnotherPerson = Object.create(person);
+yetAnotherPerson.name = "홍식";
+yetAnotherPerson.friends.push("운도");
+
+console.log(person.friends);
+
+//문제3 답: [ '민재', '찬우', '근실', '은희', '아윤', '운도' ]
