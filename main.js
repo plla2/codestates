@@ -999,19 +999,85 @@
 // 프로토타입에 SuperType의 인스턴스를 할당한 다음 즉시 객체리터럴로 덮어썼습니다. 이제 프로토타입에는 SuperType의 인스턴스가 아니라 Object의 인스턴스가 들어 있으므로 프로토타입 체인이 끊어져서 SubType과 SuperType사이에는 아무 관계도 없습니다.
 
 // 문제3
-let person = {
-  name: "승현",
-  friends: ["민재", "찬우", "근실", "은희"]
-};
+// let person = {
+//   name: "승현",
+//   friends: ["민재", "찬우", "근실", "은희"]
+// };
 
-let anotherPerson = Object.create(person);
-anotherPerson.name = "민교";
-anotherPerson.friends.push("아윤");
+// let anotherPerson = Object.create(person);
+// anotherPerson.name = "민교";
+// anotherPerson.friends.push("아윤");
 
-let yetAnotherPerson = Object.create(person);
-yetAnotherPerson.name = "홍식";
-yetAnotherPerson.friends.push("운도");
+// let yetAnotherPerson = Object.create(person);
+// yetAnotherPerson.name = "홍식";
+// yetAnotherPerson.friends.push("운도");
 
-console.log(person.friends);
+// console.log(person.friends);
 
-//문제3 답: [ '민재', '찬우', '근실', '은희', '아윤', '운도' ]
+// //문제3 답: [ '민재', '찬우', '근실', '은희', '아윤', '운도' ]
+
+
+// 문제1
+// 다음 3개의 코드 중 에러가 뜨지않는 것을 고르고, 에러가 뜨는 코드는 무슨에러인지 쓰시오.
+// 1-1 
+// class Coffee{
+//   this.name="";
+// }
+// console.log(name)
+
+// 1-2
+// class Coffee{
+//   name="Americano";
+//   constructor(){
+//     console.log(name)
+//   }
+// }
+// new Coffee();
+
+// 1-3
+// class Coffee {
+//   name;
+// }
+// const mine = new Coffee();
+// console.log(mine);
+
+// 문제1 답
+// 1-1 SyntaxError: Unexpected token '.'
+// 클래스 몸체에서 클래스 필드를 정의하는 경우 this에 클래스 필드를 바인딩하면 안됨.
+// 1-2 ReferenceError: name is not defined
+// 클래스 필드를 참조할때 자바스크립트는 this를 생략해서는 안된다.
+// 1-3 Coffee {name: undefined}
+
+// 문제 2
+class deepdive {
+  constructor(name) {
+    this.name = name
+  }
+
+  study() {
+    console.log(`${this.name} study hard.`);
+  }
+}
+
+class SixGroup extends deepdive {
+  study() {
+    super.study();
+    console.log(`${this.name} played.`);
+  }
+}
+
+let x = new SixGroup("happy");
+console.log(x.study());
+// 문제2 답:
+// happy study hard.
+// happy played.
+
+문제 3
+
+1. 서브클래스에서 constructor를 생략하지 않는 경우 서브클래스의 constructor에서는 반드시 super를 호출해야한다.
+2. 서브클래스의 constructor에서 super를 호출하기 전에는 this를 참조할 수 없다.
+3. 클래스필드는 그 인스턴스의 프로퍼티가 되며, 인스턴스를 통해 클래스 외부에서 언제나 참조할 수 있다.
+4. 생성자함수를 new연산자 없이 호출하면 에러가 발생한다
+
+문제3 답: OOOX
+4번 생성자함수를 new연산자없이 호출하면 일반 함수로서 호출된다.
