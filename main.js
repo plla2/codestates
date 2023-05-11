@@ -1019,22 +1019,22 @@
 
 // 문제1
 // 다음 3개의 코드 중 에러가 뜨지않는 것을 고르고, 에러가 뜨는 코드는 무슨에러인지 쓰시오.
-// 1-1 
-// class Coffee{
-//   this.name="";
+// 1 - 1
+// class Coffee {
+//   this.name = "";
 // }
 // console.log(name)
 
-// 1-2
-// class Coffee{
-//   name="Americano";
-//   constructor(){
+// 1 - 2
+// class Coffee {
+//   name = "Americano";
+//   constructor() {
 //     console.log(name)
 //   }
 // }
 // new Coffee();
 
-// 1-3
+// 1 - 3
 // class Coffee {
 //   name;
 // }
@@ -1042,42 +1042,96 @@
 // console.log(mine);
 
 // 문제1 답
-// 1-1 SyntaxError: Unexpected token '.'
+// 1 - 1 SyntaxError: Unexpected token '.'
 // 클래스 몸체에서 클래스 필드를 정의하는 경우 this에 클래스 필드를 바인딩하면 안됨.
-// 1-2 ReferenceError: name is not defined
+// 1 - 2 ReferenceError: name is not defined
 // 클래스 필드를 참조할때 자바스크립트는 this를 생략해서는 안된다.
-// 1-3 Coffee {name: undefined}
+// 1 - 3 Coffee { name: undefined }
 
 // 문제 2
-class deepdive {
-  constructor(name) {
-    this.name = name
-  }
+// class deepdive {
+//   constructor(name) {
+//     this.name = name
+//   }
 
-  study() {
-    console.log(`${this.name} study hard.`);
-  }
-}
+//   study() {
+//     console.log(`${this.name} study hard.`);
+//   }
+// }
 
-class SixGroup extends deepdive {
-  study() {
-    super.study();
-    console.log(`${this.name} played.`);
-  }
-}
+// class SixGroup extends deepdive {
+//   study() {
+//     super.study();
+//     console.log(`${this.name} played.`);
+//   }
+// }
 
-let x = new SixGroup("happy");
-console.log(x.study());
+// let x = new SixGroup("happy");
+// console.log(x.study());
 // 문제2 답:
 // happy study hard.
 // happy played.
+//   undefined
 
-문제 3
+// 문제 3
 
-1. 서브클래스에서 constructor를 생략하지 않는 경우 서브클래스의 constructor에서는 반드시 super를 호출해야한다.
-2. 서브클래스의 constructor에서 super를 호출하기 전에는 this를 참조할 수 없다.
-3. 클래스필드는 그 인스턴스의 프로퍼티가 되며, 인스턴스를 통해 클래스 외부에서 언제나 참조할 수 있다.
-4. 생성자함수를 new연산자 없이 호출하면 에러가 발생한다
+// 1. 서브클래스에서 constructor를 생략하지 않는 경우 서브클래스의 constructor에서는 반드시 super를 호출해야한다.
+// 2. 서브클래스의 constructor에서 super를 호출하기 전에는 this를 참조할 수 없다.
+// 3. 클래스필드는 그 인스턴스의 프로퍼티가 되며, 인스턴스를 통해 클래스 외부에서 언제나 참조할 수 있다.
+// 4. 생성자함수를 new연산자 없이 호출하면 에러가 발생한다
 
-문제3 답: OOOX
-4번 생성자함수를 new연산자없이 호출하면 일반 함수로서 호출된다.
+// 문제3 답: OOOX
+// 4번 생성자함수를 new연산자없이 호출하면 일반 함수로서 호출된다.
+
+// 문제 1.
+// let value = 50;
+
+// let group = {
+//   value: 100,
+//   foo: function () {
+//     console.log(this);
+//     console.log(this.value);
+//     function bar() {
+//       console.log(this);
+//       console.log(this.value);
+//     }
+//     bar();
+//   }
+// }
+// group.foo()
+
+// 답: {value:100, foo:f}
+//     100
+//     window
+//     undefined
+
+// 문제2
+// let userData = {
+//   id: '승현',
+//   name: '딥다이브',
+//   setName: function (firstName, lastName) {
+//     this.name = firstName + ' ' + lastName;
+//   }
+// }
+
+// function getUserName(firstName, lastName, callback) {
+//   callback(firstName, lastName);
+// }
+
+// getUserName('딥다이브', '6조', userData.setName);
+
+// console.log('1: ', userData.name);
+// console.log('2: ', window.name);
+
+// 답:
+// 1: 딥다이브
+// 2: 딥다이브 6조
+// setName() 함수가 실행되기 전의 name 값이 나오는 것인데, 이는 getUserName() 이 전역 함수이기 때문이다.
+// 한마디로 함수가 복사되어 callback 파라미터에 담기게 되니, setName()의 this는 전역객체 window를 가리키게 되는 것이다.
+
+// 문제3
+// 내부함수 this가 전역객체를 참조하는 것을 회피하는 방법 3가지를 적어주세요
+// 답: 
+// 1. let that = this;를 해서 객체의 this를 변수에 저장해 사용
+// 2. call, bind, apply로 this 설정
+// 3. 화살표함수 사용
