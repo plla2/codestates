@@ -1100,12 +1100,12 @@
 // }
 // group.foo()
 
-// 답: {value:100, foo:f}
+// 1번 답: {value:100, foo:f}
 //     100
 //     window
 //     undefined
 
-// 문제2
+// // 문제2
 // let userData = {
 //   id: '승현',
 //   name: '딥다이브',
@@ -1123,11 +1123,11 @@
 // console.log('1: ', userData.name);
 // console.log('2: ', window.name);
 
-// 답:
-// 1: 딥다이브
-// 2: 딥다이브 6조
-// setName() 함수가 실행되기 전의 name 값이 나오는 것인데, 이는 getUserName() 이 전역 함수이기 때문이다.
-// 한마디로 함수가 복사되어 callback 파라미터에 담기게 되니, setName()의 this는 전역객체 window를 가리키게 되는 것이다.
+// // 답:
+// // 1: 딥다이브
+// // 2: 딥다이브 6조
+// // setName() 함수가 실행되기 전의 name 값이 나오는 것인데, 이는 getUserName() 이 전역 함수이기 때문이다.
+// // 한마디로 함수가 복사되어 callback 파라미터에 담기게 되니, setName()의 this는 전역객체 window를 가리키게 되는 것이다.
 
 // 문제3
 // 내부함수 this가 전역객체를 참조하는 것을 회피하는 방법 3가지를 적어주세요
@@ -1135,3 +1135,4 @@
 // 1. let that = this;를 해서 객체의 this를 변수에 저장해 사용
 // 2. call, bind, apply로 this 설정
 // 3. 화살표함수 사용
+
