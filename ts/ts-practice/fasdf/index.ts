@@ -1,5 +1,16 @@
-function printlog<T>(text: T): T {
-  return text;
+interface Student {
+  type: "student";
+  school: string;
 }
-console.log(printlog("하이"));
-console.log(printlog(123));
+interface Developer {
+  type: "developer";
+  skill: string;
+}
+interface User<T> {
+  name: string;
+  profile: T;
+}
+
+function goToSchool(user: User<Student>) {
+  const school = user.profile.school;
+}
