@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import "./App.css";
+import PokemonThumbnail from "./components/PokemonThumbnail";
 
 function App() {
   const [allPokemons, setAllPokemons] = useState([]);
@@ -30,10 +31,22 @@ function App() {
 
   return (
     <div className="app-container">
-      <h1>Pokemon Evolution</h1>
+      <h1>포켓몬 도감</h1>
       <div className="pokemon-container">
-        <div className="all-container"></div>
-        <button className="load-more">Load more</button>
+        <div className="all-container">
+          {allPokemons.map((pokemon, index) => (
+            <PokemonThumbnail
+              id={pokemon.id}
+              name={pokemon.name}
+              image={pokemon.sprites.other.dream_world.front_default}
+              type={pokemon.types[0].type.name}
+              key={index}
+            />
+          ))}
+        </div>
+        <button className="load-more" onClick={() => getAllPokemons()}>
+          더 불러오기
+        </button>
       </div>
     </div>
   );
