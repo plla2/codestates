@@ -1,19 +1,18 @@
-import "./App.css";
-import TodoForm from "./components/TodoForm";
-import TodoList from "./components/TodoList";
+import React, { useState } from "react";
+import Person from "./components/Person";
 
-function App() {
+const App: React.FC = () => {
+  const [country, setCountry] = useState<string>("");
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setCountry(e.target.value);
+  };
   return (
-    <>
-      <div className="todo-app">
-        <header>
-          <h1>Todo App</h1>
-        </header>
-        <TodoForm />
-        <TodoList />
-      </div>
-    </>
+    <div>
+      <Person name={"plla2"} age={25} email={"jhbasda"} />
+      <input type="text" onChange={handleChange} />
+      {country}
+    </div>
   );
-}
+};
 
 export default App;
